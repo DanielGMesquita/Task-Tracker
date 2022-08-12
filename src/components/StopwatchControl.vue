@@ -1,12 +1,12 @@
 <template>
   <StopwatchDisplay :timeInSeconds="timeInSeconds" />
-  <button class="button" @click="startStopwatch">
+  <button class="button" @click="startStopwatch" :disabled="stopwatchRunning">
     <span class="icon">
       <i class="fas fa-play"></i>
     </span>
     <span>play</span>
   </button>
-  <button class="button" @click="endStopwatch">
+  <button class="button" @click="endStopwatch" :disabled="!stopwatchRunning">
     <span class="icon">
       <i class="fas fa-stop"></i>
     </span>
@@ -26,17 +26,20 @@ export default defineComponent({
   data() {
     return {
       timeInSeconds: 0,
-      stopWatch: 0, //referência para o intervalo (setInterval), assim podemos utilizar no clearInterval
+      stopwatch: 0, //referência para o intervalo (setInterval), assim podemos utilizar no clearInterval
+      stopwatchRunning: false,
     };
   },
   methods: {
     startStopwatch() {
-      this.stopWatch = setInterval(() => {
+      this.stopwatchRunning = true;
+      this.stopwatch = setInterval(() => {
         this.timeInSeconds += 1;
       }, 1000);
     },
     endStopwatch() {
-      clearInterval(this.stopWatch);
+      this.stopwatchRunning = false;
+      clearInterval(this.stopwatch);
     },
   },
 });
