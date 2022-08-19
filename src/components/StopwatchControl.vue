@@ -20,6 +20,7 @@ import StopwatchDisplay from "./Stopwatch.vue";
 
 export default defineComponent({
   name: "StopwatchControls",
+  emits: ['finishedStopwatch'],
   components: {
     StopwatchDisplay,
   },
@@ -40,6 +41,8 @@ export default defineComponent({
     endStopwatch() {
       this.stopwatchRunning = false;
       clearInterval(this.stopwatch);
+      this.$emit('finishedStopwatch', this.timeInSeconds);
+      this.timeInSeconds = 0;
     },
   },
 });
