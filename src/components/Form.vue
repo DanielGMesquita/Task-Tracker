@@ -2,7 +2,7 @@
   <div class="box">
     <div class="columns">
       <div
-        class="column is-8"
+        class="column is-7"
         role="form"
         area-label="Formulário para criação de uma nova tarefa"
       >
