@@ -17,7 +17,7 @@
         <section
           class="is-flex is-align-items-center is-justify-content-space-between"
         >
-          <StopwatchControls @finishedStopwatch="endTask"/>
+          <StopwatchControls @finishedStopwatch="endTask" />
         </section>
       </div>
     </div>
@@ -30,23 +30,23 @@ import StopwatchControls from "./StopwatchControl.vue";
 
 export default defineComponent({
   name: "FormHandler",
-  emits: ['whenSaveTask'],
+  emits: ["whenSaveTask"],
   components: {
     StopwatchControls,
   },
-  data () {
+  data() {
     return {
-      taskDescription: ''
-    }
+      taskDescription: "",
+    };
   },
   methods: {
-    endTask (timeElapsed: number) : void {
-      this.$emit('whenSaveTask', {
+    endTask(timeElapsed: number): void {
+      this.$emit("whenSaveTask", {
         durationInSeconds: timeElapsed,
-        description: this.taskDescription
-      })
-      this.taskDescription = ''
-    }
-  }
+        description: this.taskDescription,
+      });
+      this.taskDescription = "";
+    },
+  },
 });
 </script>
