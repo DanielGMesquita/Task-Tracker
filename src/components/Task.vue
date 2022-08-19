@@ -2,23 +2,30 @@
     <div class="box has-text-weight-bold">
         <div class="columns">
             <div class="column is-7">
-                Task Details
+                {{ task.description }}
             </div>
             <div class="column">
-                <StopwatchDisplay timeInSeconds="15"/>
+                <StopwatchDisplay :timeInSeconds="task.durationInSeconds"/>
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import { defineComponent } from 'vue'
+    import { defineComponent, PropType } from 'vue'
     import StopwatchDisplay from './Stopwatch.vue';
+    import ITask from '../interfaces/ITask';
 
     export default defineComponent({
         name: 'TaskDetail',
         components: {
             StopwatchDisplay
+        },
+        props: {
+            task: {
+                type: Object as PropType<ITask>,
+                required: true
+            }
         }
     })
 </script>

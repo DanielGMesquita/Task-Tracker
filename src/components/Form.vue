@@ -17,7 +17,7 @@
         <section
           class="is-flex is-align-items-center is-justify-content-space-between"
         >
-          <StopwatchControls @finishedStopWatch="endTask"/>
+          <StopwatchControls @finishedStopwatch="endTask"/>
         </section>
       </div>
     </div>
