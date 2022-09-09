@@ -1,13 +1,15 @@
 <template>
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline" :class="{ 'dark-mode': darkTheme }">
     <div class="column is-one-quarter">
-      <Sidebar />
+      <Sidebar @themeChanged = "changeTheme"/>
     </div>
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter content">
       <FormHandler @whenSaveTask="saveTask" />
       <div class="list">
         <TaskDetail v-for="(task, index) in tasks" :key="index" :task="task" />
-        <BoxTemplate v-if="emptyList"> Nenhuma tarefa em acompanhamento. </BoxTemplate>
+        <BoxTemplate v-if="emptyList">
+          Nenhuma tarefa em acompanhamento.
+        </BoxTemplate>
       </div>
     </div>
   </main>
@@ -27,17 +29,21 @@ export default defineComponent({
   data() {
     return {
       tasks: [] as ITask[],
+      darkTheme: false,
     };
   },
   computed: {
-    emptyList () : boolean {
-      return this.tasks.length === 0
-    }
+    emptyList(): boolean {
+      return this.tasks.length === 0;
+    },
   },
   methods: {
     saveTask(task: ITask) {
       this.tasks.push(task);
     },
+    changeTheme (darkTheme: boolean) {
+    this.darkTheme = darkTheme;
+    }
   },
 });
 </script>
@@ -45,5 +51,16 @@ export default defineComponent({
 <style>
 .list {
   padding: 1.25rem;
+}
+main {
+  --bg-primary: #ffffff;
+  --txt-primary: #000;
+}
+main.dark-mode {
+  --bg-primary: #2b2d42;
+  --txt-primary: #ddd;
+}
+.content{
+  background-color: var(--bg-primary);
 }
 </style>
