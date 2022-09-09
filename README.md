@@ -5,6 +5,9 @@
 
 > A task tracker with a stopwatch. When the task is finished, it will fill a list below the input.
 
+### Deploy
+[Time Tracker](https://task-tracker-alpha.vercel.app/)
+
 ## Install
 
 ## Project setup
